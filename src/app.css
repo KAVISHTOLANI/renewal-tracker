@@ -1,0 +1,170 @@
+/* Renewal Radar specific styles */
+:root {
+  --plan: #2f6aa3;
+}
+.radar-fig {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+.radar {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.radar-ring {
+  fill: none;
+  stroke: var(--border);
+  stroke-dasharray: 3 4;
+}
+.radar-axis {
+  stroke: var(--border);
+}
+.radar-lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--muted);
+  letter-spacing: 0.08em;
+}
+.radar-core {
+  fill: var(--accent);
+}
+.radar-now {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  fill: #fff;
+  text-transform: uppercase;
+}
+.radar-sweep {
+  transform-origin: 180px 180px;
+  animation: sweep 6s linear infinite;
+}
+.radar-sweep path {
+  fill: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+@keyframes sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.blip {
+  cursor: pointer;
+  outline: none;
+  animation: blip-in 0.6s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+.blip circle {
+  stroke: var(--surface);
+  stroke-width: 2;
+  transition: r 0.15s var(--ease);
+}
+.blip:focus-visible circle {
+  stroke: var(--text);
+  stroke-width: 3;
+}
+.b-expired circle, .legend i.b-expired-k { fill: var(--err); background: var(--err); }
+.b-act-now circle, .legend i.b-act-now-k { fill: var(--warn); background: var(--warn); }
+.b-plan circle, .legend i.b-plan-k { fill: var(--plan); background: var(--plan); }
+.b-ok circle, .legend i.b-ok-k { fill: var(--ok); background: var(--ok); }
+.legend i.b-expired-k, .legend i.b-act-now-k, .legend i.b-plan-k, .legend i.b-ok-k { border-radius: 50%; }
+@keyframes blip-in {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+.hero-rr {
+  display: grid;
+}
+
+/* Lists */
+.act-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.act {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--ok);
+  border-radius: var(--radius);
+}
+.act.s-expired { border-left-color: var(--err); }
+.act.s-act-now { border-left-color: var(--warn); }
+.act.s-plan { border-left-color: var(--plan); }
+.act-name {
+  font-weight: 600;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.checks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.checks li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.checks .is-done {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 8px 16px;
+  margin: 0;
+  align-items: baseline;
+}
+.facts dt {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.renew-form {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+.months {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.kind-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: 0;
+  background: var(--warn);
+}
+.kind-dot.expires {
+  background: var(--err);
+}
+@media (prefers-reduced-motion: reduce) {
+  .radar-sweep,
+  .blip {
+    animation: none;
+  }
+}
+
+.badge.badge-plan {
+  background: color-mix(in srgb, var(--plan) 14%, var(--surface));
+  color: var(--plan);
+}

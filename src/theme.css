@@ -1,0 +1,7 @@
+/* Renewal Radar palette and display type. Shared components read these tokens. */
+:root {
+  --accent: #a33b0b;
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --display-weight: 560;
+  --display-italic-weight: 420;
+}
